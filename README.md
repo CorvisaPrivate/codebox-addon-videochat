@@ -1,4 +1,4 @@
-codebox-addon-videochat
+Video Chat (CodeBox add-on)
 =======================
 
-WebRTC video chat integration inside your workspace
+WebRTC video chat integration inside your workspace.

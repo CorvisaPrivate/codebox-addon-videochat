@@ -1,0 +1,16 @@
+{
+    "name": "videochat",
+    "version": "0.0.1",
+    "title": "Video Chat",
+    "description": "WebRTC video chat integration inside your workspace for communicating with collaborators.",
+    "homepage": "https://github.com/FriendCode/codebox-addon-videochat",
+    "license": "Apache",
+    "author": {
+        "name": "Samy Pessé",
+        "email": "samypesse@gmaiL.com",
+        "url": "http://samypesse.fr"
+    },
+    "client": {
+        "main": "client"
+    }
+}
