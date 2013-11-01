@@ -1,4 +1,4 @@
-define([], function() {
+define(["views/dialog"], function(VideoChatDialog) {
     var commands = require("core/commands");
     var app = require("core/app");
     var dialogs = require("utils/dialogs");
@@ -37,9 +37,9 @@ define([], function() {
 
     // Add opening command
     commands.register("addons.videochat.open", {
-        title: "Vieo Chat",
+        title: "Video Chat",
         icon: "video-camera"
     }, function() {
-        //dialogs.open(GitDialog);
+        dialogs.open(VideoChatDialog);
     });
 });
