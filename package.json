@@ -10,6 +10,16 @@
         "email": "samypesse@gmaiL.com",
         "url": "http://samypesse.fr"
     },
+    "main": "./node/main",
+    "dependencies": {
+        "holla": "0.6.2"
+    },
+    "plugin": {
+        "provides": [],
+        "consumes": [
+            "workspace", "server", "logger"
+        ]
+    },
     "client": {
         "main": "client"
     }
