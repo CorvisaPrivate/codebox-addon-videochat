@@ -1,0 +1,78 @@
+.addon-videochat {
+    position: fixed;
+    z-index: 1000;
+
+    width: 220px;
+    height: 111px;
+    margin: 10px;
+
+    &.size-small {
+        width: 100px;
+        height: 51px;
+    }
+
+    &.size-large {
+        width: 400px;
+        height: 201px;
+    }
+
+    &.position-right-bottom {
+        right: 0px;
+        bottom: 0px;    
+    }
+    &.position-right-top {
+        right: 0px;
+        top: 0px;    
+    }
+    &.position-left-bottom {
+        left: 0px;
+        bottom: 0px;    
+    }
+    &.position-left-top {
+        left: 0px;
+        top: 0px;    
+    }
+
+
+    video {
+        position: absolute;
+        width: 100%;
+        border: 1px solid #000;
+        background: #eee;
+
+        &.video-them {
+            top: 0px;
+            left: 0px;
+            right: 0px;
+        }
+
+        &.video-me {
+            min-height: 0px;
+            min-width: 0px;
+            width: 30%;
+            right: 5%;
+            top: 5%;
+            z-index: 100;
+        }
+    }
+
+    .btn-hangup {
+        position: absolute;
+        bottom: 8px;
+        left: 8px;
+        right: 8px;
+        width: auto;
+        background: #da4f49;
+        color: #fff;
+        border: 1px solid #bd362f;
+        z-index: 200;
+        border-radius: 0px;
+        display: none;
+    }
+
+    &:hover {
+        .btn-hangup {
+            display: block;
+        }
+    }
+}

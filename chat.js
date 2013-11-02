@@ -1,14 +1,107 @@
 define([
-    "node_modules/holla/holla"
+    "node_modules/holla/holla",
+    "less!stylesheets/chat.less"
 ], function(holla) {
+    var $ = require("jQuery");
     var user = require("core/user");
+    var dialogs = require("utils/dialogs");
+
+    // Create chat element
+    var $chat = $("<div>", {
+        "class": "addon-videochat"
+    }).appendTo($("body"));
+    var $videoMe = $("<video>", {
+        'class': 'video-me',
+        'autoplay': true,
+        'muted': true
+    }).appendTo($chat);
+    var $videoThem = $("<video>", {
+        'class': 'video-them',
+        'autoplay': true
+    }).appendTo($chat);
+    var $hangup = $("<a>", {
+        "class": "btn btn-hangup",
+        "text": "Hang up",
+        "click": function(e) {
+            e.preventDefault();
+        }
+    }).appendTo($chat);
+
+    // Change user settings
+    var applySettings = function() {
+        $chat.attr("class", "addon-videochat size-"+user.get("settings.videochat.size", "normal")+" position-"+user.get("settings.videochat.position", "right-bottom"));
+    };
+    user.on("change:settings.videochat", applySettings);
+    applySettings();
+
+
+    var showVideos = function() {
+        $chatContainer.show();
+    };
+
+    var hideVideos = function() {
+        $chatContainer.hide();
+    };
+
+    var bindCall = function(call) {
+        call.ready(function(themstream) {
+            holla.pipe(themstream, $videoThem);
+        });
+        call.on("hangup", function() {
+            $videoThem.attr('src', '');
+            hideVideos();
+            call.releaseStream();
+        });
+        $hangup.click(function(){
+            call.end();
+        });
+    };
+
+    // Call an other user by its id
+    var callUser = function(userId) {
+        showVideos();
+
+        holla.createFullStream(function(err, stream) {
+            holla.pipe(stream, $videoMe);
+
+            var call = server.call(userId);
+            call.addStream(stream);
+
+            showCall(call);
+            
+            call.on("answered", function() {
+                console.log("Remote user answered the call");
+            });
+            call.on("rejected", function() {
+                call.end();
+            });
+
+            console.log("Calling ", call.user);
+        });
+    };
 
     // Create holla client
     var rtc = holla.createClient();
 
-    
+    rtc.register(user.get("userId"), function(worked) {
+        rtc.on("call", function(call) {
+            dialogs.confirm("Inbound call from "+call.user+", accept ?").then(function() {
+                showVideos();
+
+                holla.createFullStream(function(err, stream) {
+                    call.addStream(stream);
+                    call.answer();
+                    holla.pipe(stream, $videoMe);
+
+                    bindCall(call);
+                });
+            }, function() {
+                call.decline();
+            });
+        });
+    });
 
     return {
-
+        'call': callUser
     };
 });

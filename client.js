@@ -31,6 +31,17 @@ define(["views/dialog"], function(VideoChatDialog) {
                     'left-bottom': 'Left Bottom',
                     'left-top': 'Left Top'
                 }
+            },
+            'size': {
+                'label': "Size",
+                'type': "select",
+                'help': "Size of videos on screen.",
+                'default': "normal",
+                'options': {
+                    'small': 'Small',
+                    'normal': 'Normal',
+                    'large': 'Large'
+                }
             }
         }
     });
