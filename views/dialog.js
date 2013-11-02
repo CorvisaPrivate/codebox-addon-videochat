@@ -26,6 +26,7 @@ define([
             e.preventDefault();
             var userId = $(e.currentTarget).data("collaborator");
             chat.call(userId);
+            this.close();
         }
     });
 

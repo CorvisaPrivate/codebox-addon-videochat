@@ -1,6 +1,6 @@
 {
     "name": "videochat",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "title": "Video Chat",
     "description": "WebRTC video chat integration inside your workspace for communicating with collaborators.",
     "homepage": "https://github.com/FriendCode/codebox-addon-videochat",
@@ -12,7 +12,7 @@
     },
     "main": "./node/main",
     "dependencies": {
-        "holla": "0.6.2"
+        "holla": "git+https://github.com/wearefractal/holla.git#9724ae1b63673acddf8ccefbf0f1abd635cd8cd8"
     },
     "plugin": {
         "provides": [],

@@ -6,6 +6,9 @@ define([
     var user = require("core/user");
     var dialogs = require("utils/dialogs");
 
+    // Create holla client
+    var rtc = holla.createClient();
+
     // Create chat element
     var $chat = $("<div>", {
         "class": "addon-videochat"
@@ -36,11 +39,11 @@ define([
 
 
     var showVideos = function() {
-        $chatContainer.show();
+        $chat.show();
     };
 
     var hideVideos = function() {
-        $chatContainer.hide();
+        $chat.hide();
     };
 
     var bindCall = function(call) {
@@ -64,10 +67,10 @@ define([
         holla.createFullStream(function(err, stream) {
             holla.pipe(stream, $videoMe);
 
-            var call = server.call(userId);
+            var call = rtc.call(userId);
             call.addStream(stream);
 
-            showCall(call);
+            bindCall(call);
             
             call.on("answered", function() {
                 console.log("Remote user answered the call");
@@ -79,9 +82,6 @@ define([
             console.log("Calling ", call.user);
         });
     };
-
-    // Create holla client
-    var rtc = holla.createClient();
 
     rtc.register(user.get("userId"), function(worked) {
         rtc.on("call", function(call) {
@@ -100,6 +100,8 @@ define([
             });
         });
     });
+
+    hideVideos();
 
     return {
         'call': callUser

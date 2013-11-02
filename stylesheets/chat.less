@@ -3,17 +3,17 @@
     z-index: 1000;
 
     width: 220px;
-    height: 111px;
+    height: 165px;
     margin: 10px;
 
     &.size-small {
         width: 100px;
-        height: 51px;
+        height: 75px;
     }
 
     &.size-large {
         width: 400px;
-        height: 201px;
+        height: 300px;
     }
 
     &.position-right-bottom {
@@ -51,7 +51,7 @@
             min-width: 0px;
             width: 30%;
             right: 5%;
-            top: 5%;
+            bottom: 5%;
             z-index: 100;
         }
     }
@@ -71,6 +71,9 @@
     }
 
     &:hover {
+        .video-me {
+            display: none;
+        }
         .btn-hangup {
             display: block;
         }
