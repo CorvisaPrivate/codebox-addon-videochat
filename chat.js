@@ -6,6 +6,9 @@ define([
     var user = require("core/user");
     var dialogs = require("utils/dialogs");
 
+    // Settings
+    var settings = user.settings("videochat");
+
     // Create holla client
     var rtc = holla.createClient();
 
@@ -32,9 +35,9 @@ define([
 
     // Change user settings
     var applySettings = function() {
-        $chat.attr("class", "addon-videochat size-"+user.get("settings.videochat.size", "normal")+" position-"+user.get("settings.videochat.position", "right-bottom"));
+        $chat.attr("class", "addon-videochat size-"+settings.get("size", "normal")+" position-"+settings.get("position", "right-bottom"));
     };
-    user.on("change:settings.videochat", applySettings);
+    settings.change(applySettings);
     applySettings();
 
 
@@ -85,6 +88,10 @@ define([
 
     rtc.register(user.get("userId"), function(worked) {
         rtc.on("call", function(call) {
+            if (settings.get("state", "online") == "offline") {
+                return call.decline();
+            }
+            
             dialogs.confirm("Inbound call from "+call.user+", accept ?").then(function() {
                 showVideos();
 
