@@ -12,12 +12,16 @@ define(["chat"], function(chat) {
         'namespace': "videochat",
         'section': "main",
         'title': "Video Chat",
+        'defaults': {
+            'state': "online",
+            'psoition': "right-bottom",
+            'size': "normal"
+        },
         'fields': {
             'state': {
                 'label': "State",
                 'type': "select",
                 'help': "If offline, collaborators will not be able to call you.",
-                'default': "online",
                 'options': {
                     'online': 'Online',
                     'offline': 'Offline'
@@ -27,7 +31,6 @@ define(["chat"], function(chat) {
                 'label': "Position",
                 'type': "select",
                 'help': "Position for the videos during a call.",
-                'default': "right-bottom",
                 'options': {
                     'right-bottom': 'Right Bottom',
                     'right-top': 'Right Top',
@@ -39,7 +42,6 @@ define(["chat"], function(chat) {
                 'label': "Size",
                 'type': "select",
                 'help': "Size of videos on screen.",
-                'default': "normal",
                 'options': {
                     'small': 'Small',
                     'normal': 'Normal',
