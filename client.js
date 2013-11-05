@@ -1,8 +1,11 @@
-define(["views/dialog"], function(VideoChatDialog) {
+define(["chat"], function(chat) {
     var commands = require("core/commands");
     var app = require("core/app");
     var dialogs = require("utils/dialogs");
     var settings = require("utils/settings");
+    var search = require("core/search");
+    var collaborators = require("core/collaborators");
+    var user = require("core/user");
 
     // Add settings page
     settings.add({
@@ -45,12 +48,26 @@ define(["views/dialog"], function(VideoChatDialog) {
             }
         }
     });
-
-    // Add opening command
-    commands.register("addons.videochat.open", {
-        title: "Video Chat",
-        icon: "video-camera"
-    }, function() {
-        dialogs.open(VideoChatDialog);
+    
+    search.handler({
+        'id': "videochat",
+        'title': "Video chat with"
+    }, function(query) {
+        query = query.toLowerCase();
+        
+        return _.map(collaborators.filter(function(cuser) {
+            return (cuser.get("name").toLowerCase().search(query) >= 0
+            && user.get("userId") != cuser.get("userId"));
+        }), function(user) {
+            return {
+                'text': user.get("name"),
+                'image': user.avatar({size: 48}),
+                'callback': function() {
+                    dialogs.confirm("Do you want to call <b>"+_.escape(user.get("name"))+"</b>?").then(function() {
+                        chat.call(user.get("userId"));
+                    });
+                }
+            }
+        });
     });
 });
