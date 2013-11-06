@@ -10,7 +10,6 @@ define(["chat"], function(chat) {
     // Add settings page
     settings.add({
         'namespace': "videochat",
-        'section': "main",
         'title': "Video Chat",
         'defaults': {
             'state': "online",
