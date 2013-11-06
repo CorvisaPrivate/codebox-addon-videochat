@@ -1,4 +1,4 @@
-Video Chat (CodeBox add-on)
+Video Chat for Codebox
 =======================
 
-WebRTC video chat integration inside your workspace.
+WebRTC video chat integration inside your workspace (https://github.com/FriendCode/codebox).
