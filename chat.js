@@ -1,10 +1,10 @@
 define([
-    "node_modules/holla/holla",
+    "node_modules/holla/holla.min",
     "less!stylesheets/chat.less"
 ], function(holla) {
-    var $ = require("jQuery");
-    var user = require("core/user");
-    var dialogs = require("utils/dialogs");
+    var $ = codebox.require("jQuery");
+    var user = codebox.require("core/user");
+    var dialogs = codebox.require("utils/dialogs");
 
     // Settings
     var settings = user.settings("videochat");

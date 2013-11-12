@@ -1,11 +1,11 @@
 define(["chat"], function(chat) {
-    var commands = require("core/commands");
-    var app = require("core/app");
-    var dialogs = require("utils/dialogs");
-    var settings = require("utils/settings");
-    var search = require("core/search");
-    var collaborators = require("core/collaborators");
-    var user = require("core/user");
+    var commands = codebox.require("core/commands");
+    var app = codebox.require("core/app");
+    var dialogs = codebox.require("utils/dialogs");
+    var settings = codebox.require("utils/settings");
+    var search = codebox.require("core/search");
+    var collaborators = codebox.require("core/collaborators");
+    var user = codebox.require("core/user");
 
     // Add settings page
     settings.add({
