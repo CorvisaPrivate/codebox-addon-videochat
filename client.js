@@ -1,5 +1,5 @@
 define(["chat"], function(chat) {
-    var commands = codebox.require("core/commands");
+    var commands = codebox.require("core/commands/toolbar");
     var app = codebox.require("core/app");
     var dialogs = codebox.require("utils/dialogs");
     var settings = codebox.require("core/settings");

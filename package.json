@@ -21,6 +21,9 @@
         ]
     },
     "client": {
-        "main": "client"
+        "main": "client",
+        "network": [
+            "/holla"
+        ]
     }
 }
