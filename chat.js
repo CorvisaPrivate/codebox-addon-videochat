@@ -2,6 +2,10 @@ define([
     "node_modules/holla/holla.min",
     "less!stylesheets/chat.less"
 ], function(holla) {
+    if (!holla.supported) {
+        throw new Error("Video chat is not supported in this browser");
+    }
+
     var $ = codebox.require("jQuery");
     var user = codebox.require("core/user");
     var dialogs = codebox.require("utils/dialogs");
