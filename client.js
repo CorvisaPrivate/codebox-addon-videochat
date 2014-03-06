@@ -61,9 +61,12 @@ define(["chat"], function(chat) {
             && user.get("userId") != cuser.get("userId"));
         }), function(user) {
             return {
-                'text': user.get("name"),
-                'image': user.avatar({size: 48}),
-                'callback': function() {
+                'position': 0,
+                'title': user.get("name"),
+                'icons': {
+                    'search': "video-camera"
+                },
+                'action': function() {
                     dialogs.confirm("Do you want to call <b>"+_.escape(user.get("name"))+"</b>?").then(function() {
                         chat.call(user.get("userId"));
                     });

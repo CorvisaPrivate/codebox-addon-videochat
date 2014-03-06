@@ -1,7 +1,8 @@
 define([
-    "node_modules/holla/holla.min",
+    "holla",
     "less!stylesheets/chat.less"
 ], function(holla) {
+    console.log(holla);
     if (!holla.supported) {
         throw new Error("Video chat is not supported in this browser");
     }

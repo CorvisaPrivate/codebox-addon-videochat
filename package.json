@@ -12,7 +12,7 @@
     },
     "main": "./node/main",
     "dependencies": {
-        "holla": "git+https://github.com/wearefractal/holla.git#9724ae1b63673acddf8ccefbf0f1abd635cd8cd8"
+        "holla": "git+https://github.com/wearefractal/holla.git#ba6f59d1295f15e2bb4502ddbfaf6a59bc9b7721"
     },
     "plugin": {
         "provides": [],
@@ -25,5 +25,8 @@
         "network": [
             "/holla"
         ]
+    },
+    "engines": {
+        "codebox": ">=0.7.0"
     }
 }
