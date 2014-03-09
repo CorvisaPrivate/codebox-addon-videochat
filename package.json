@@ -1,6 +1,6 @@
 {
     "name": "videochat",
-    "version": "0.2.1",
+    "version": "0.3.0",
     "title": "Video Chat",
     "description": "WebRTC video chat integration inside your workspace for communicating with collaborators.",
     "homepage": "https://github.com/FriendCode/codebox-addon-videochat",
